@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    tools{
+    tools {
         maven 'Maven3'
         jdk 'JDK17'
     }
@@ -20,13 +20,21 @@ pipeline {
             }
         }
 
-         stage('Docker Image to DockerHub') {
+        stage('Docker Image to DockerHub') {
             steps {
-                script{
+                script {
                     withCredentials([string(credentialsId: 'dockerHub', variable: 'dockerhub')]) {
                         sh 'docker login -u isakaya709 -p ${dockerhub}'
                         sh 'docker push isakaya709/my-application:latest'
                     }
+                }
+            }
+        }
+
+        stage('Docker Image') {
+            steps {
+                script {
+                    kubernetesDeploy(configs: 'deploymentservice.yml', kubeconfigId: 'kubernetes')
                 }
             }
         }
