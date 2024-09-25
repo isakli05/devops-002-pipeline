@@ -6,13 +6,19 @@ pipeline {
         jdk 'JDK17'
     }
 
-    stages {
-        stage('Build Maven') {
-            steps {
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/isakli05/devops-002-pipeline']])
-                sh 'mvn clean install'
+        stages {
+            stage('Build Maven') {
+                steps {
+                    checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/isakli05/devops-002-pipeline']])
+                    sh 'mvn clean install'
+                }
             }
-        }
+
+        stage('Unit Test') {
+                steps {
+                    sh 'echo unit test'
+                }
+            }
 
         stage('Docker Image') {
             steps {
@@ -38,6 +44,12 @@ pipeline {
 
                 }
             }
+        }
+
+        stage('Docker Image to Clean') {
+             steps {
+                 sh 'docker build -t isakaya709/my-application  .'
+             }
         }
     }
 }
