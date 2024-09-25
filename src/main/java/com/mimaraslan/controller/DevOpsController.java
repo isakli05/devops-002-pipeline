@@ -15,6 +15,7 @@ public class DevOpsController {
 
     //  http://localhost:8080
     @GetMapping
+    System.out.println("DevOps Hello : " + LocalDateTime.now());
     public String devopsHello() {
 
         System.out.println("DevOps Hello : " + LocalDateTime.now());
@@ -24,6 +25,7 @@ public class DevOpsController {
 
     //  http://localhost:8080/info
     @GetMapping("/info")
+            System.out.println("DevOps Info : " + LocalDateTime.now());
     public String info() {
 
         System.out.println("DevOps Info : " + LocalDateTime.now());
