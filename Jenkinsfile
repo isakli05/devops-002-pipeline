@@ -48,7 +48,7 @@ pipeline {
 
         stage('Docker Image to Clean') {
              steps {
-                 sh 'docker build -t isakaya709/my-application  .'
+                 sh 'echo Docker Image to Clean'
              }
         }
     }
