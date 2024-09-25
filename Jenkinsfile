@@ -49,7 +49,7 @@ pipeline {
 
         stage('Docker Image to Clean') {
              steps {
-                 sh 'echo Docker Image to Clean'
+                 sh 'docker image prune -f'
              }
         }
     }
