@@ -26,6 +26,8 @@ public class DevOpsController {
     public String info() {
 
         System.out.println("DevOps Info : " + LocalDateTime.now());
-        return "DEVOPS INFO : " + LocalDateTime.now();
+  //      return "DEVOPS INFO : " + LocalDateTime.now();
+        return "DEVOPS INFO : ";
+
     }
 }
